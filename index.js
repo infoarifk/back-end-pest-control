@@ -1,5 +1,6 @@
 const express = require('express');
 const { MongoClient, ServerApiVersion } = require('mongodb');
+require('dotenv').config();
 const cors = require('cors');
 
 const app = express();
@@ -13,7 +14,7 @@ app.use(express.json());
 
 
 
-const uri = "mongodb+srv://pestsolution:h39MbaHwhKLLRnwP@cluster0.nud4ico.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.nud4ico.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   serverApi: {
