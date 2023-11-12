@@ -22,6 +22,7 @@ const client = new MongoClient(uri, {
 
 const database = client.db("pestSolutionDB");
 const contactCollection = database.collection("contacts");
+const servicesCollecrion = database.collection("services");
 
 async function run() {
   try {
@@ -41,6 +42,14 @@ async function run() {
   
   
       });
+
+      app.post("/services", async (req, res)=>{
+
+        const service = req.body;
+        console.log("received service: ", service);
+        const result = await servicesCollecrion.insertOne(service);
+        res.send(result);
+      })
   
     
     await client.db("admin").command({ ping: 1 });
