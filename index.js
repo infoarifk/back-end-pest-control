@@ -23,6 +23,7 @@ const client = new MongoClient(uri, {
 const database = client.db("pestSolutionDB");
 const contactCollection = database.collection("contacts");
 const servicesCollecrion = database.collection("services");
+const bookingCollection = database.collection("bookings");
 
 async function run() {
   try {
@@ -66,6 +67,14 @@ async function run() {
         const service = req.body;
         console.log("received service: ", service);
         const result = await servicesCollecrion.insertOne(service);
+        res.send(result);
+      });
+
+      app.post("/bookings", async (req, res)=>{
+
+        const booking = req.body;
+        console.log("received service: ", booking);
+        const result = await bookingCollection.insertOne(booking);
         res.send(result);
       });
 
@@ -119,3 +128,5 @@ app.get("/", (req, res)=>{
 app.listen(port, ()=>{
     console.log(`server is running in port: ${port}`);
 })
+
+
