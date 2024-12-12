@@ -27,7 +27,7 @@ const bookingCollection = database.collection("bookings");
 async function run() {
   try {
     
-    await client.connect();
+   
 
 
     app.get("/services", async(req, res)=>{
